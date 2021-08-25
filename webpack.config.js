@@ -8,7 +8,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    clean: true,    
+    clean: true,
   },
 
   devServer: {
@@ -24,7 +24,7 @@ module.exports = {
       template: './src/index.html',
     }),
   ],
-  
+
   module: {
     rules: [
       {
