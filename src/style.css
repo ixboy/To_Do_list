@@ -1,3 +1,33 @@
+* {
+  list-style: none;
+}
+
 body {
-  background-color: rgb(77, 77, 105);
+  margin: 1rem;
+  background-color: rgba(173, 168, 167, 0.37);
+}
+
+.fa-check,
+.fa-trash,
+.clear {
+  color: rgb(17, 67, 110);
+}
+
+li,
+.clear {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.9rem;
+}
+
+li{
+  border: 1px solid rgba(14, 57, 65, 0.486);
+  padding: 1rem;
+}
+
+.container {
+  background-color: hsla(0, 100%, 97%, 0.835);
+  max-width: 60%;
+  text-align: center;
+  padding: 1rem;
 }
