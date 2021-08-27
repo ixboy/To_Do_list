@@ -23,11 +23,12 @@ function listItems() {
   list.innerHTML = '';
   toDoList.forEach((e) => {
     list.innerHTML += `<li>
-    <i class="de fa fa-check-circle" job="complete" id="${e.id}"></i>
+    <input type="checkbox" class="check">
     <a class="text"> ${e.description} </a>
-    <i class="de fa fa-trash" job="delete" id="${e.id}"></i>
+    <button class="del" type="submit" id="${e.id}><i class="fas fa-trash"></i></button> 
   </li>`;
   });
+  console.log(toDoList)
   
 }
 
