@@ -11,8 +11,8 @@ const clear = document.querySelector('.fa-sync');
 const btn = document.querySelector('.btn');
 const input = document.querySelector('.input');
 const list = document.querySelector('#list');
+let checkboxes = ""
 const toDoList = [];
-
 const options = { weekday: 'long', month: 'short', day: 'numeric' };
 const today = new Date();
 
@@ -23,13 +23,29 @@ function listItems() {
   list.innerHTML = '';
   toDoList.forEach((e) => {
     list.innerHTML += `<li>
-    <input type="checkbox" class="check">
+    <input type="checkbox" class="check" id="${e.id}">
     <a class="text"> ${e.description} </a>
     <button class="del" type="submit" id="${e.id}><i class="fas fa-trash"></i></button> 
   </li>`;
   });
-  console.log(toDoList)
-  
+  checkboxes = document.querySelectorAll('input[type="checkbox"]')
+}
+
+function chechekInput(todo){
+  checkboxes.forEach(checkbox => checkbox.addEventListener('change', function(){
+    if(this.checked){
+      todo[this.id].completed = true
+      console.log(this)
+      console.log(this.id)
+      console.log(todo[this.id].completed)
+      
+    }else
+    todo[this.id].completed = false
+    console.log(this)
+    console.log(this.id)
+    console.log(todo[this.id].completed)
+
+  }))
 }
 
 function addToDo(e) {
@@ -41,6 +57,7 @@ function addToDo(e) {
       id: toDoList.length,
     });
     listItems();
+    chechekInput(toDoList)
     input.value = '';
   }
 }
