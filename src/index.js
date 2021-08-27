@@ -6,11 +6,18 @@ import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
 import './style.css';
 
+const dateElement = document.getElementById('date');
 const clear = document.querySelector('.fa-sync');
 const btn = document.querySelector('.btn');
 const input = document.querySelector('.input');
 const list = document.querySelector('#list');
 const toDoList = [];
+
+const options = { weekday: 'long', month: 'short', day: 'numeric' };
+const today = new Date();
+
+dateElement.innerHTML = today.toLocaleDateString('en-US', options);
+
 
 function listItems() {
   list.innerHTML = '';
