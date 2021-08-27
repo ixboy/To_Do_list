@@ -1,25 +1,23 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-unused-vars */
+/* eslint-disable import/no-cycle */
 import '@fortawesome/fontawesome-free/js/fontawesome';
 import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
 import './style.css';
 
-import {
-chechekInput
-} from './main';
+import chechekInput from './main';
 
 const dateElement = document.getElementById('date');
 const clear = document.querySelector('.fa-sync');
 const btn = document.querySelector('.btn');
 const input = document.querySelector('.input');
 const list = document.querySelector('#list');
-export let checkboxes = ""
 let toDoList = [];
 
 if (localStorage.toDoList !== undefined) {
-  toDoList = JSON.parse(localStorage.toDoList)
+  toDoList = JSON.parse(localStorage.toDoList);
 }
 
 const options = { weekday: 'long', month: 'short', day: 'numeric' };
@@ -27,7 +25,7 @@ const today = new Date();
 
 dateElement.innerHTML = today.toLocaleDateString('en-US', options);
 
-export function updateLocalStorage() {
+export default function updateLocalStorage() {
   localStorage.toDoList = JSON.stringify(toDoList);
 }
 
@@ -40,7 +38,6 @@ function listItems() {
     <button class="del" type="submit" id="${e.id}><i class="fas fa-trash"></i></button> 
   </li>`;
   });
-  checkboxes = document.querySelectorAll('input[type="checkbox"]')
 }
 
 function addToDo(e) {
@@ -52,8 +49,8 @@ function addToDo(e) {
       id: toDoList.length,
     });
     listItems();
-    updateLocalStorage()
-    chechekInput(toDoList)
+    updateLocalStorage();
+    chechekInput(toDoList);
     input.value = '';
   }
 }
