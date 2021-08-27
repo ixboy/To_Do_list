@@ -12,12 +12,20 @@ const btn = document.querySelector('.btn');
 const input = document.querySelector('.input');
 const list = document.querySelector('#list');
 let checkboxes = ""
-const toDoList = [];
+let toDoList = [];
+
+if (localStorage.toDoList !== undefined) {
+  toDoList = JSON.parse(localStorage.toDoList)
+}
+
 const options = { weekday: 'long', month: 'short', day: 'numeric' };
 const today = new Date();
 
 dateElement.innerHTML = today.toLocaleDateString('en-US', options);
 
+function updateLocalStorage() {
+  localStorage.toDoList = JSON.stringify(toDoList);
+}
 
 function listItems() {
   list.innerHTML = '';
@@ -35,16 +43,10 @@ function chechekInput(todo){
   checkboxes.forEach(checkbox => checkbox.addEventListener('change', function(){
     if(this.checked){
       todo[this.id].completed = true
-      console.log(this)
-      console.log(this.id)
-      console.log(todo[this.id].completed)
-      
+      updateLocalStorage()
     }else
-    todo[this.id].completed = false
-    console.log(this)
-    console.log(this.id)
-    console.log(todo[this.id].completed)
-
+      todo[this.id].completed = false
+      updateLocalStorage()
   }))
 }
 
@@ -56,6 +58,7 @@ function addToDo(e) {
       completed: false,
       id: toDoList.length,
     });
+    updateLocalStorage()
     listItems();
     chechekInput(toDoList)
     input.value = '';
