@@ -6,12 +6,16 @@ import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
 import './style.css';
 
+import {
+chechekInput
+} from './main';
+
 const dateElement = document.getElementById('date');
 const clear = document.querySelector('.fa-sync');
 const btn = document.querySelector('.btn');
 const input = document.querySelector('.input');
 const list = document.querySelector('#list');
-let checkboxes = ""
+export let checkboxes = ""
 let toDoList = [];
 
 if (localStorage.toDoList !== undefined) {
@@ -23,7 +27,7 @@ const today = new Date();
 
 dateElement.innerHTML = today.toLocaleDateString('en-US', options);
 
-function updateLocalStorage() {
+export function updateLocalStorage() {
   localStorage.toDoList = JSON.stringify(toDoList);
 }
 
@@ -39,17 +43,6 @@ function listItems() {
   checkboxes = document.querySelectorAll('input[type="checkbox"]')
 }
 
-function chechekInput(todo){
-  checkboxes.forEach(checkbox => checkbox.addEventListener('change', function(){
-    if(this.checked){
-      todo[this.id].completed = true
-      updateLocalStorage()
-    }else
-      todo[this.id].completed = false
-      updateLocalStorage()
-  }))
-}
-
 function addToDo(e) {
   e.preventDefault();
   if (input.value) {
@@ -58,8 +51,8 @@ function addToDo(e) {
       completed: false,
       id: toDoList.length,
     });
-    updateLocalStorage()
     listItems();
+    updateLocalStorage()
     chechekInput(toDoList)
     input.value = '';
   }
