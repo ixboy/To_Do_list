@@ -48,6 +48,23 @@ li {
   padding: 1rem;
 }
 
+#to-do-input,
+.edit-input {
+  text-align: center;
+  border: 0;
+  padding: 0.7em 1.2em;
+  outline: 0;
+  font-style: italic;
+  font-size: 1rem;
+  width: 100%;
+  background: transparent;
+}
+
+.edit-input {
+  font-style: normal;
+  font-size: 1rem;
+}
+
 .container {
   background-color: hsla(0, 100%, 97%, 0.835);
   max-width: 60%;
@@ -64,3 +81,4 @@ li {
   margin: 0 auto;
   text-align: center;
 }
+
