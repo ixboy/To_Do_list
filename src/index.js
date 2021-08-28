@@ -27,7 +27,6 @@ dateElement.innerHTML = today.toLocaleDateString('en-US', options);
 
 export default function updateLocalStorage() {
   localStorage.toDoList = JSON.stringify(toDoList);
-  listItems();
 }
 
 // function deleteTask(i) {
@@ -53,7 +52,7 @@ function listItems() {
   list.innerHTML = '';
   toDoList.forEach((e) => {
     list.innerHTML += `<li class="list-all">
-    <input type="checkbox" class="check" id="${e.id}">
+    <input type="checkbox" class="${e.completed ? 'completed' : ''}" id="${e.id}">
     <a class="text"> ${e.description} </a>
     <button class="del" type="submit" id="${e.id}><i class="fas fa-trash"></i></button> 
   </li>`;
@@ -63,6 +62,7 @@ function listItems() {
     const button = li.lastElementChild;
     const checkbox = li.firstElementChild;
     button.addEventListener('click', (e) => {
+      e.target.parentElement.remove();
       toDoList.splice(i, 1);
       updateLocalStorage();
     });
@@ -70,12 +70,12 @@ function listItems() {
       if (e.target.checked) {
         toDoList[i].completed = true;
         e.target.checked = true;
-        e.target.parentElement.style.textDecoration = 'line-through';
+        e.target.parentElement.classList.add('completed');
         updateLocalStorage();
       } else {
         toDoList[i].completed = false;
         e.target.checked = false;
-        e.target.parentElement.style.textDecoration = '';
+        e.target.parentElement.classList.remove('completed');
         updateLocalStorage();
       }
     });
