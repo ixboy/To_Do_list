@@ -38,11 +38,12 @@
     "webpack-dev-server": "^4.0.0"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.4",
     "@babel/core": "^7.15.0",
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.2.2",
     "file-loader": "^6.2.0",
+    "gh-pages": "^3.2.3",
     "lodash": "^4.17.21",
     "node-sass": "^6.0.1",
     "sass-loader": "^12.1.0",
