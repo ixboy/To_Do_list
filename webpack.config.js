@@ -16,7 +16,6 @@ module.exports = {
       directory: 'dist',
     },
     compress: true,
-    port: 9000,
   },
 
   plugins: [
