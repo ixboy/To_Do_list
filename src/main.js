@@ -36,8 +36,9 @@ function addToDo(e) {
     toDoList.push({
       description: input.value,
       completed: false,
-      id: toDoList.length,
+      index: toDoList.length,
     });
+    updateLocalStorage();
     listItems(toDoList);
     input.value = '';
   }

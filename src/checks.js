@@ -1,14 +1,23 @@
 const list = document.querySelector('#list');
-
+function updateIndex() {
+  const toDoList = JSON.parse(localStorage.toDoList);
+  let counter = 0;
+  toDoList.forEach((todo) => {
+    todo.index = counter;
+    counter += 1;
+  });
+  localStorage.toDoList = JSON.stringify(toDoList);
+}
 export default function listItems(toDoList) {
   list.innerHTML = '';
   toDoList.forEach((e) => {
     list.innerHTML += `<li class="list-all">
-      <input type="checkbox" class="${e.completed ? 'completed' : ''}" id="${e.id}">
+      <input type="checkbox" class="${e.completed ? 'completed' : ''}" id="${e.index}">
       <a class="text"> ${e.description} </a>
-      <button class="del" type="submit" id="${e.id}><i class="fas fa-trash"></i></button> 
+      <button class="del" type="submit" id="${e.index}><i class="fas fa-trash"></i></button> 
     </li>`;
   });
+
   const listAll = document.querySelectorAll('.list-all');
   listAll.forEach((li, i) => {
     const button = li.lastElementChild;
@@ -16,7 +25,7 @@ export default function listItems(toDoList) {
     button.addEventListener('click', (e) => {
       e.target.parentElement.remove();
       toDoList.splice(i, 1);
-      localStorage.toDoList = JSON.stringify(toDoList);
+      updateIndex();
     });
     checkbox.addEventListener('click', (e) => {
       if (e.target.checked) {
