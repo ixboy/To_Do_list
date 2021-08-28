@@ -7,7 +7,7 @@ import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
 import './style.css';
 
-import chechekInput from './main';
+// import listItems from './main';
 
 const dateElement = document.getElementById('date');
 const clear = document.querySelector('.fa-sync');
@@ -27,17 +27,60 @@ dateElement.innerHTML = today.toLocaleDateString('en-US', options);
 
 export default function updateLocalStorage() {
   localStorage.toDoList = JSON.stringify(toDoList);
+  listItems();
 }
+
+// function deleteTask(i) {
+//   // console.log(e)
+//   console.log(i)
+
+//   // console.log(this);
+// }
+
+// function checkInput(index) {
+//   if (this.checked) {
+//     toDoList[index].completed = true;
+//     this.checked = true;
+//     console.log(this);
+//   } else {
+//     toDoList[index].completed = false;
+//     this.checked = false;
+//     console.log(this);
+//   }
+// }
 
 function listItems() {
   list.innerHTML = '';
   toDoList.forEach((e) => {
-    list.innerHTML += `<li>
+    list.innerHTML += `<li class="list-all">
     <input type="checkbox" class="check" id="${e.id}">
     <a class="text"> ${e.description} </a>
     <button class="del" type="submit" id="${e.id}><i class="fas fa-trash"></i></button> 
   </li>`;
   });
+  const listAll = document.querySelectorAll('.list-all');
+  listAll.forEach((li, i) => {
+    const button = li.lastElementChild;
+    const checkbox = li.firstElementChild;
+    button.addEventListener('click', (e) => {
+      toDoList.splice(i, 1);
+      updateLocalStorage();
+    });
+    checkbox.addEventListener('click', (e) => {
+      if (e.target.checked) {
+        toDoList[i].completed = true;
+        e.target.checked = true;
+        e.target.parentElement.style.textDecoration = 'line-through';
+        updateLocalStorage();
+      } else {
+        toDoList[i].completed = false;
+        e.target.checked = false;
+        e.target.parentElement.style.textDecoration = '';
+        updateLocalStorage();
+      }
+    });
+  });
+  updateLocalStorage();
 }
 
 function addToDo(e) {
@@ -49,8 +92,6 @@ function addToDo(e) {
       id: toDoList.length,
     });
     listItems();
-    updateLocalStorage();
-    chechekInput(toDoList);
     input.value = '';
   }
 }
