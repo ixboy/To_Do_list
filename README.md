@@ -56,7 +56,7 @@ $ cd dist
 3. Open the `index.html` file and run the application;
 
 ### Live demo
-Alternatively, you can run the app through the [live demo link]().
+Alternatively, you can run the app through the [live demo link](https://ixboy.github.io/To_Do_list/).
 
 
 
@@ -68,7 +68,7 @@ Alternatively, you can run the app through the [live demo link]().
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page]().
+Feel free to check the [issues page](https://github.com/ixboy/To_Do_list/issues).
 
 ## Show your support
 
