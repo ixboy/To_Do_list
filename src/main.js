@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/no-cycle */
+/* eslint-disable import/no-mutable-exports */
 import listItems from './checks';
 
 const dateElement = document.getElementById('date');
@@ -8,7 +9,7 @@ const dateElement = document.getElementById('date');
 const btn = document.querySelector('.btn');
 const input = document.querySelector('.input');
 const clearAllCompleted = document.querySelector('.clear-completed');
-let toDoList = [];
+export let toDoList = [];
 
 if (localStorage.toDoList !== undefined) {
   toDoList = JSON.parse(localStorage.toDoList);
@@ -19,7 +20,7 @@ const today = new Date();
 
 dateElement.innerHTML = today.toLocaleDateString('en-US', options);
 
-export default function updateLocalStorage() {
+export function updateLocalStorage() {
   localStorage.toDoList = JSON.stringify(toDoList);
 }
 
@@ -39,11 +40,11 @@ function addToDo(e) {
       index: toDoList.length,
     });
     updateLocalStorage();
-    listItems(toDoList);
+    listItems();
     input.value = '';
   }
 }
 
-window.addEventListener('DOMContentLoaded', listItems(toDoList));
+window.addEventListener('DOMContentLoaded', listItems);
 btn.addEventListener('click', addToDo);
 clearAllCompleted.addEventListener('click', clearCompleted);

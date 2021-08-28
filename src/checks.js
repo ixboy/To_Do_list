@@ -1,14 +1,16 @@
+/* eslint-disable import/no-cycle */
+import { toDoList, updateLocalStorage } from './main';
+
 const list = document.querySelector('#list');
 function updateIndex() {
-  const toDoList = JSON.parse(localStorage.toDoList);
-  let counter = 0;
+  let counter = 1;
   toDoList.forEach((todo) => {
     todo.index = counter;
     counter += 1;
   });
-  localStorage.toDoList = JSON.stringify(toDoList);
+  updateLocalStorage();
 }
-export default function listItems(toDoList) {
+export default function listItems() {
   list.innerHTML = '';
   toDoList.forEach((e) => {
     list.innerHTML += `<li class="list-all">
