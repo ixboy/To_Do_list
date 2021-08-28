@@ -7,13 +7,12 @@ import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
 import './style.css';
 
-// import listItems from './main';
-
 const dateElement = document.getElementById('date');
 const clear = document.querySelector('.fa-sync');
 const btn = document.querySelector('.btn');
 const input = document.querySelector('.input');
 const list = document.querySelector('#list');
+const clearAllCompleted = document.querySelector('.clear-completed');
 let toDoList = [];
 
 if (localStorage.toDoList !== undefined) {
@@ -29,24 +28,12 @@ export default function updateLocalStorage() {
   localStorage.toDoList = JSON.stringify(toDoList);
 }
 
-// function deleteTask(i) {
-//   // console.log(e)
-//   console.log(i)
-
-//   // console.log(this);
-// }
-
-// function checkInput(index) {
-//   if (this.checked) {
-//     toDoList[index].completed = true;
-//     this.checked = true;
-//     console.log(this);
-//   } else {
-//     toDoList[index].completed = false;
-//     this.checked = false;
-//     console.log(this);
-//   }
-// }
+function clearCompleted(e) {
+  e.preventDefault()
+  toDoList = toDoList.filter((todo) => (todo.completed === false));
+  updateLocalStorage();
+  listItems()
+}
 
 function listItems() {
   list.innerHTML = '';
@@ -96,5 +83,7 @@ function addToDo(e) {
   }
 }
 
+
 window.addEventListener('DOMContentLoaded', listItems());
 btn.addEventListener('click', addToDo);
+clearAllCompleted.addEventListener('click', clearCompleted)
