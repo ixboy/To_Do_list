@@ -47,15 +47,11 @@ export default function listItems() {
         e.target.checked = true;
         e.target.parentElement.classList.add('completed');
         updateLocalStorage();
-
-        // localStorage.toDoList = JSON.stringify(toDoList);
       } else {
         toDoList[i].completed = false;
         e.target.checked = false;
         e.target.parentElement.classList.remove('completed');
         updateLocalStorage();
-
-        // localStorage.toDoList = JSON.stringify(toDoList);
       }
     });
   });
