@@ -5102,7 +5102,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const dateElement = document.getElementById('date');
-// const clear = document.querySelector('.fa-sync');
 const btn = document.querySelector('.btn');
 const input = document.querySelector('.input');
 const clearAllCompleted = document.querySelector('.clear-completed');
