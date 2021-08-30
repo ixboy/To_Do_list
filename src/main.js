@@ -5,7 +5,6 @@
 import listItems from './checks';
 
 const dateElement = document.getElementById('date');
-// const clear = document.querySelector('.fa-sync');
 const btn = document.querySelector('.btn');
 const input = document.querySelector('.input');
 const clearAllCompleted = document.querySelector('.clear-completed');
