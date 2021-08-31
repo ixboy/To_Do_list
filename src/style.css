@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 * {
   list-style: none;
 }
@@ -5,6 +7,8 @@
 body {
   margin: 1rem;
   background-color: rgba(173, 168, 167, 0.37);
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
 }
 
 .todo {
@@ -44,9 +48,36 @@ li {
   padding: 1rem;
 }
 
+#to-do-input,
+.edit-input {
+  text-align: center;
+  border: 0;
+  padding: 0.7em 1.2em;
+  outline: 0;
+  font-style: italic;
+  font-size: 1rem;
+  width: 100%;
+  background: transparent;
+}
+
+.edit-input {
+  font-style: normal;
+  font-size: 1rem;
+}
+
 .container {
   background-color: hsla(0, 100%, 97%, 0.835);
   max-width: 60%;
   text-align: center;
   padding: 1rem;
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.clear-completed {
+  margin: 0 auto;
+  text-align: center;
 }

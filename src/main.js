@@ -1,15 +1,49 @@
-/* eslint-disable func-names */
-// eslint-disable-next-line import/no-cycle
-import updateLocalStorage from './index';
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-cycle */
+/* eslint-disable import/no-mutable-exports */
+import listItems from './checks';
 
-export default function chechekInput(todo) {
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+const dateElement = document.getElementById('date');
+const btn = document.querySelector('.btn');
+const input = document.querySelector('.input');
+const clearAllCompleted = document.querySelector('.clear-completed');
+export let toDoList = [];
 
-  checkboxes.forEach((checkbox) => checkbox.addEventListener('change', function () {
-    if (this.checked) {
-      todo[this.id].completed = true;
-      updateLocalStorage();
-    } else todo[this.id].completed = false;
-    updateLocalStorage();
-  }));
+if (localStorage.toDoList !== undefined) {
+  toDoList = JSON.parse(localStorage.toDoList);
 }
+
+const options = { weekday: 'long', month: 'short', day: 'numeric' };
+const today = new Date();
+
+dateElement.innerHTML = today.toLocaleDateString('en-US', options);
+
+export function updateLocalStorage() {
+  localStorage.toDoList = JSON.stringify(toDoList);
+}
+
+function clearCompleted(e) {
+  e.preventDefault();
+  toDoList = toDoList.filter((todo) => (todo.completed === false));
+  updateLocalStorage();
+  listItems(toDoList);
+}
+
+function addToDo(e) {
+  e.preventDefault();
+  if (input.value) {
+    toDoList.push({
+      description: input.value,
+      completed: false,
+      index: toDoList.length,
+    });
+    updateLocalStorage();
+    listItems();
+    input.value = '';
+  }
+}
+
+window.addEventListener('DOMContentLoaded', listItems);
+btn.addEventListener('click', addToDo);
+clearAllCompleted.addEventListener('click', clearCompleted);

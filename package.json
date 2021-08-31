@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
     "start": "webpack serve --open",
-    "build": "webpack"
+    "build-dev": "webpack --config=webpack.config.dev.js",
+    "build": "webpack",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,8 @@
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
     "babel-eslint": "^10.1.0",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.2.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
@@ -39,9 +43,11 @@
   },
   "dependencies": {
     "@babel/core": "^7.15.0",
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.2.2",
     "file-loader": "^6.2.0",
+    "gh-pages": "^3.2.3",
     "lodash": "^4.17.21",
     "node-sass": "^6.0.1",
     "sass-loader": "^12.1.0",
