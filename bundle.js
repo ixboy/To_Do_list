@@ -5035,8 +5035,8 @@ function listItems() {
   list.innerHTML = '';
   _main__WEBPACK_IMPORTED_MODULE_0__.toDoList.forEach((e) => {
     list.innerHTML += `<li class="list-all">
-      <input type="checkbox" class="${e.completed ? 'completed' : ''}" id="${e.index}">
-      <input type="text" value="${e.description}" class="edit-input description-${e.index}">
+      <input type="checkbox"  id="${e.index}">
+      <input type="text" value="${e.description}" class="edit-input description">
       <button class="del" type="submit" id="${e.index}><i class="fas fa-trash"></i></button> 
     </li>`;
   });
@@ -5046,13 +5046,14 @@ function listItems() {
     const button = li.lastElementChild;
     const input = li.children[1];
     const checkbox = li.firstElementChild;
+    if (_main__WEBPACK_IMPORTED_MODULE_0__.toDoList[i].completed) checkbox.checked = true;
 
     input.addEventListener('keyup', (e) => {
       e.preventDefault();
       if (e.key === 'Enter') {
         const newDescrip = e.target.value;
         _main__WEBPACK_IMPORTED_MODULE_0__.toDoList[i].description = newDescrip;
-        localStorage.toDoList = JSON.stringify(_main__WEBPACK_IMPORTED_MODULE_0__.toDoList);
+        (0,_main__WEBPACK_IMPORTED_MODULE_0__.updateLocalStorage)();
       }
     });
 
@@ -5062,21 +5063,17 @@ function listItems() {
       updateIndex();
     });
 
-    checkbox.addEventListener('click', (e) => {
+    checkbox.addEventListener('change', (e) => {
       if (e.target.checked) {
         _main__WEBPACK_IMPORTED_MODULE_0__.toDoList[i].completed = true;
-        e.target.checked = true;
         e.target.parentElement.classList.add('completed');
-        (0,_main__WEBPACK_IMPORTED_MODULE_0__.updateLocalStorage)();
       } else {
         _main__WEBPACK_IMPORTED_MODULE_0__.toDoList[i].completed = false;
-        e.target.checked = false;
         e.target.parentElement.classList.remove('completed');
-        (0,_main__WEBPACK_IMPORTED_MODULE_0__.updateLocalStorage)();
       }
+      (0,_main__WEBPACK_IMPORTED_MODULE_0__.updateLocalStorage)();
     });
   });
-  localStorage.toDoList = JSON.stringify(_main__WEBPACK_IMPORTED_MODULE_0__.toDoList);
 }
 
 
