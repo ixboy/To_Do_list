@@ -14,8 +14,8 @@ export default function listItems() {
   list.innerHTML = '';
   toDoList.forEach((e) => {
     list.innerHTML += `<li class="list-all">
-      <input type="checkbox" class="${e.completed ? 'completed' : ''}" id="${e.index}">
-      <input type="text" value="${e.description}" class="edit-input description-${e.index}">
+      <input type="checkbox"  id="${e.index}">
+      <input type="text" value="${e.description}" class="edit-input description">
       <button class="del" type="submit" id="${e.index}><i class="fas fa-trash"></i></button> 
     </li>`;
   });
@@ -25,13 +25,14 @@ export default function listItems() {
     const button = li.lastElementChild;
     const input = li.children[1];
     const checkbox = li.firstElementChild;
+    if (toDoList[i].completed) checkbox.checked = true;
 
     input.addEventListener('keyup', (e) => {
       e.preventDefault();
       if (e.key === 'Enter') {
         const newDescrip = e.target.value;
         toDoList[i].description = newDescrip;
-        localStorage.toDoList = JSON.stringify(toDoList);
+        updateLocalStorage();
       }
     });
 
@@ -41,19 +42,15 @@ export default function listItems() {
       updateIndex();
     });
 
-    checkbox.addEventListener('click', (e) => {
+    checkbox.addEventListener('change', (e) => {
       if (e.target.checked) {
         toDoList[i].completed = true;
-        e.target.checked = true;
         e.target.parentElement.classList.add('completed');
-        updateLocalStorage();
       } else {
         toDoList[i].completed = false;
-        e.target.checked = false;
         e.target.parentElement.classList.remove('completed');
-        updateLocalStorage();
       }
+      updateLocalStorage();
     });
   });
-  localStorage.toDoList = JSON.stringify(toDoList);
 }
