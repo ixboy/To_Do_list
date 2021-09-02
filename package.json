@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "watch": "webpack --watch",
     "start": "webpack serve --open",
     "build-dev": "webpack --config=webpack.config.dev.js",
@@ -32,6 +32,7 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.24.1",
     "html-webpack-plugin": "^5.3.2",
+    "jest": "^27.1.0",
     "style-loader": "^3.2.1",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^21.0.0",
