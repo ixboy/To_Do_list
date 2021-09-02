@@ -15,7 +15,7 @@ if (localStorage.toDoList !== undefined) {
 const options = { weekday: 'long', month: 'short', day: 'numeric' };
 const today = new Date();
 
-// dateElement.innerHTML = today.toLocaleDateString('en-US', options);
+dateElement.innerHTML = today.toLocaleDateString('en-US', options);
 
 export function updateLocalStorage() {
   localStorage.toDoList = JSON.stringify(toDoList);
