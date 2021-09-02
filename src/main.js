@@ -5,9 +5,7 @@
 import listItems from './checks';
 
 const dateElement = document.getElementById('date');
-const btn = document.querySelector('.btn');
 const input = document.querySelector('.input');
-const clearAllCompleted = document.querySelector('.clear-completed');
 export let toDoList = [];
 
 if (localStorage.toDoList !== undefined) {
@@ -17,7 +15,7 @@ if (localStorage.toDoList !== undefined) {
 const options = { weekday: 'long', month: 'short', day: 'numeric' };
 const today = new Date();
 
-dateElement.innerHTML = today.toLocaleDateString('en-US', options);
+// dateElement.innerHTML = today.toLocaleDateString('en-US', options);
 
 export function updateLocalStorage() {
   localStorage.toDoList = JSON.stringify(toDoList);
@@ -44,6 +42,12 @@ function addToDo(e) {
   }
 }
 
+export { addToDo, clearCompleted };
 window.addEventListener('DOMContentLoaded', listItems);
-btn.addEventListener('click', addToDo);
-clearAllCompleted.addEventListener('click', clearCompleted);
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.querySelector('.btn');
+  const clearAll = document.querySelector('.clear-completed');
+
+  btn.addEventListener('click', addToDo);
+  clearAll.addEventListener('click', clearCompleted);
+});
